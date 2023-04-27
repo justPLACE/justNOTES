@@ -1,10 +1,15 @@
 {
   "name": "just-notes",
-  "packageManager": "yarn@3.5.0",
-  "version": "0.0.0",
+  "packageManager": "yarn@3.2.0",
+  "version": "0.1.0",
   "description": "Sample notes aplication",
   "private": true,
+  "workspaces": [
+    "api"
+  ],
   "scripts": {
+    "start": "npm-run-all --parallel api",
+    "api": "bash -c 'cd api && yarn start'",
     "test": "yarn node ./tests/run.js"
   },
   "devDependencies": {
@@ -14,6 +19,7 @@
     "eslint": "^8.18.0",
     "jest": "29.4.3",
     "jest-pnp-resolver": "^1.2.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "typescript": "^4.6.4"
   },
@@ -27,8 +33,5 @@
     "swagger-ui-dist": {
       "unplugged": true
     }
-  },
-  "installConfig": {
-    "pnp": true
   }
 }
