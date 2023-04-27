@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"name": "✨ justNOTES",
+		"path": ".."
+	}
+],
+  "settings": {
+    "typescript.tsdk": ".yarn/sdks/typescript/lib",
+    "jest.showTerminalOnLaunch": false,
+    "jestrunner.enableYarnPnpSupport": true,
+    "typescript.enablePromptUseWorkspaceTsdk": true
+  }
+}
