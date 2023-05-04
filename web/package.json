@@ -1,0 +1,56 @@
+{
+  "name": "justNotes",
+  "version": "0.0.1",
+  "packageManager": "yarn@3.3.0",
+  "scripts": {
+    "android": "env $(cat .env.${NODE_ENV:-development}) yarn pnpify react-native run-android",
+    "ios": "env $(cat .env.${NODE_ENV:-development}) yarn pnpify react-native run-ios",
+    "start": "env $(cat .env.${NODE_ENV:-development}) yarn pnpify react-native start",
+    "lint": "env $(cat .env.${NODE_ENV:-development}) yarn pnpify eslint .",
+    "web": "env $(cat .env.${NODE_ENV:-development}) yarn pnpify react-scripts start",
+    "build": "env $(cat .env.${NODE_ENV:-development}) yarn pnpify react-scripts build",
+    "test": "env $(cat .env.${NODE_ENV:-development}) yarn pnpify react-scripts test",
+    "eject": "env $(cat .env.${NODE_ENV:-development}) yarn pnpify react-scripts eject",
+    "tsc:w": "env $(cat .env.${NODE_ENV:-development}) yarn pnpify tsc --watch"
+  },
+  "dependencies": {
+    "native-base": "^3.4.28",
+    "react": "17.0.2",
+    "react-dom": "^17.0.2",
+    "react-native": "^0.71.7",
+    "react-native-gesture-handler": "^2.9.0",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-svg": "12.1.1",
+    "react-native-web": "^0.17.1",
+    "react-navigation": "^4.4.4",
+    "react-router-dom": "^6.11.0",
+    "react-router-native": "^6.11.0",
+    "react-scripts": "^2.1.3",
+    "web-vitals": "^0.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-transform-react-jsx": "^7.21.5",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.71.6",
+    "@yarnpkg/pnpify": "^4.0.0-rc.40",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react-native-codegen": "0.0.7",
+    "react-test-renderer": "17.0.2",
+    "typescript": "^4.9.5"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
