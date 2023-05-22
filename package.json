@@ -35,5 +35,8 @@
     "swagger-ui-dist": {
       "unplugged": true
     }
+  },
+  "dependencies": {
+    "react-router-dom": "^6.11.1"
   }
 }

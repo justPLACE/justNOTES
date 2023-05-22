@@ -13,29 +13,13 @@ import Notes from './Pages/Notes';
 const App = () => {
   return (
     <NativeBaseProvider>
-      <Navbar></Navbar>
       <BrowserRouter>
+        <Navbar></Navbar>
         <Routes>
           <Route path="/" element={<Initial />} />
-        </Routes>
-      </BrowserRouter>
-      <BrowserRouter>
-        <Routes>
           <Route path="/register" element={<Register />} />
-        </Routes>
-      </BrowserRouter>
-      <BrowserRouter>
-        <Routes>
           <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-      <BrowserRouter>
-        <Routes>
           <Route path="/account" element={<Account />} />
-        </Routes>
-      </BrowserRouter>
-      <BrowserRouter>
-        <Routes>
           <Route path="/notes" element={<Notes />} />
         </Routes>
       </BrowserRouter>
