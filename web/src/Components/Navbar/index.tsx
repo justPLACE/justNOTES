@@ -1,28 +1,69 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {Button} from 'native-base';
+import {useNavigate} from 'react-router-dom';
+import Context from '../Context';
 
 const Navbar = () => {
+  let navigate = useNavigate();
+
+  const {jwt, setJwt} = useContext(Context);
   return (
     <View style={styles.container}>
       <View style={styles.childContainer}>
         <Text style={styles.text}>My Notes</Text>
       </View>
       <View style={styles.secondChildContainer}>
-        <Button style={styles.buttons}>
+        <Button style={styles.buttons} onPress={() => navigate('/')}>
           <Text style={styles.textButton}>Home</Text>
         </Button>
-        <Button style={styles.buttons}>
-          <Text style={styles.textButton}>Register </Text>
-        </Button>
-        <Button style={styles.buttons}>
-          <Text style={styles.textButton}>Login</Text>
-        </Button>
+        {jwt == '' ? (
+          <Button style={styles.buttons} onPress={() => navigate('/register')}>
+            <Text style={styles.textButton}>Register</Text>
+          </Button>
+        ) : undefined}
+        {jwt != '' ? (
+          <Button style={styles.buttons} onPress={() => navigate('/account')}>
+            <Text style={styles.textButton}>Account</Text>
+          </Button>
+        ) : undefined}
+        {jwt != '' ? (
+          <Button style={styles.buttons} onPress={() => navigate('/notes')}>
+            <Text style={styles.textButton}>Notes</Text>
+          </Button>
+        ) : undefined}
+        {jwt == '' ? (
+          <Button style={styles.buttons}>
+            <Text style={styles.textButton} onPress={() => navigate('/login')}>
+              Login
+            </Text>
+          </Button>
+        ) : undefined}
+        {jwt != '' ? (
+          <Button
+            style={styles.buttons}
+            onPress={() => {
+              setJwt('');
+              navigate('/');
+            }}>
+            <Text style={styles.textButton}>Logout</Text>
+          </Button>
+        ) : undefined}
       </View>
     </View>
   );
 };
 
+/*onPress={() => {
+  if (jwt == '') {
+    setLogado(true);
+    navigate('/account');
+    console.log(jwt);
+  } else {
+    undefined;
+  }
+}}
+*/
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
