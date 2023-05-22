@@ -1,67 +1,62 @@
 import React from 'react';
-import {TextArea, Button, Input} from 'native-base';
 import {View, StyleSheet, Text} from 'react-native';
-const Note = () => {
+import {Button} from 'native-base';
+
+export const Note = ({
+  title,
+  deleteNotes,
+  editarNotas,
+}: {
+  title: string;
+  deleteNotes: () => void;
+  editarNotas: () => void;
+}) => {
   return (
     <View>
-      <Text style={styles.text}>Edit Note</Text>
-
-      <View style={styles.viewTextArea}>
-        <Input
-          aria-label="t1"
-          placeholder="Title"
-          maxW="300"
-          color="#90909a"
-          h={7}
-        />
-      </View>
-      <View style={styles.viewTextArea}>
-        <TextArea
-          aria-label="t1"
-          placeholder="Body"
-          maxW="300"
-          color="#90909a"
-          autoCompleteType=""
-          h={20}
-        />
-      </View>
-      <View style={styles.configButtonRegister}>
-        <Button style={styles.buttonSave}>Save</Button>
-      </View>
-      <View style={styles.configButtonCancel}>
-        <Button style={styles.buttonCancel}>Cancel</Button>
+      <Text style={styles.titleNote}>{title}</Text>
+      <View style={styles.buttonSBS}>
+        <View style={styles.configButtonEdit}>
+          <Button style={styles.buttonEdit} onPress={editarNotas}>
+            {/*Quando o botão de editar for clicado, 
+          executará a função de editarNotas que está dentro do componente EditNote */}
+            Edit
+          </Button>
+        </View>
+        <View style={styles.configButtonRemove}>
+          <Button style={styles.buttonRemove} onPress={deleteNotes}>
+            Remove
+          </Button>
+        </View>
       </View>
     </View>
   );
 };
 
-export default Note;
-
 const styles = StyleSheet.create({
-  text: {
-    marginTop: 20,
-    paddingLeft: 180,
-    fontSize: 30,
-    marginBottom: 20,
-  },
-  viewTextArea: {
+  titleNote: {
+    fontSize: 20,
     marginLeft: 180,
-    marginBottom: 10,
-  },
-  buttonSave: {
-    backgroundColor: '#178754',
-  },
-  buttonCancel: {
-    backgroundColor: '#6c747c',
-  },
-  configButtonRegister: {
-    marginLeft: 180,
-    marginRight: 200,
     marginTop: 20,
   },
-  configButtonCancel: {
+  buttonEdit: {
+    backgroundColor: '#fcc008',
+  },
+  buttonRemove: {
+    backgroundColor: '#bb2c38',
+  },
+  configButtonEdit: {
     marginLeft: 180,
-    marginRight: 200,
+    marginRight: 20,
     marginTop: 20,
+  },
+  configButtonRemove: {
+    marginRight: 800,
+    marginTop: 20,
+  },
+  buttonSBS: {
+    display: 'flex',
+    flexDirection: 'row',
   },
 });
+
+export default Note;
