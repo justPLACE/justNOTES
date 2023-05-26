@@ -54,16 +54,6 @@ const Navbar = () => {
   );
 };
 
-/*onPress={() => {
-  if (jwt == '') {
-    setLogado(true);
-    navigate('/account');
-    console.log(jwt);
-  } else {
-    undefined;
-  }
-}}
-*/
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
