@@ -62,15 +62,19 @@ export const login = async (email: string, senha: string) => {
   return await secondResponse.json();
 };
 
-export const getUser = async () => {
+export const useApi = () => {
   const {jwt, setJwt} = useContext(Context);
-  const response = await fetch('http://localhost:8090/users/me', {
-    method: 'GET',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: jwt,
-    },
-  });
+  return {
+    getUser: async () => {
+      const response = await fetch('http://localhost:8090/users/me', {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: jwt,
+        },
+      });
 
-  return await response.json();
+      return await response.json();
+    },
+  };
 };

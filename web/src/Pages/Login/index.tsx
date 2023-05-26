@@ -62,7 +62,7 @@ const Login = () => {
           <Button style={styles.buttonCancel}>Cancel</Button>
         </View>
       </View>
-      {erro == true ? <Text>Algo deu errado, tente novamente</Text> : undefined}
+      {erro && <Text>Algo deu errado, tente novamente</Text>}
     </View>
   );
 };
