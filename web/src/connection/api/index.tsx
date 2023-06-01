@@ -2,8 +2,10 @@ import {sha512} from 'js-sha512';
 import {useContext} from 'react';
 import Context from '../../Components/Context';
 
+const API_URL = 'http://localhost:8090';
+
 export const cadastro = async (nome: string, email: string, senha: string) => {
-  const response = await fetch('http://localhost:8090/users', {
+  const response = await fetch(`${API_URL}/users`, {
     method: 'POST',
     body: JSON.stringify({
       name: nome,
@@ -19,7 +21,7 @@ export const cadastro = async (nome: string, email: string, senha: string) => {
 };
 
 export const login = async (email: string, senha: string) => {
-  const response = await fetch('http://localhost:8090/users/auth', {
+  const response = await fetch(`${API_URL}/users/auth`, {
     method: 'POST',
     body: JSON.stringify({
       email: email,
@@ -43,7 +45,7 @@ export const login = async (email: string, senha: string) => {
 
   //Fazer requisição ao segundo endpoint de autenticação
 
-  const secondResponse = await fetch('http://localhost:8090/users/auth', {
+  const secondResponse = await fetch(`${API_URL}/users/auth`, {
     method: 'PUT',
     body: JSON.stringify({
       email: email,
@@ -63,13 +65,12 @@ export const login = async (email: string, senha: string) => {
 };
 
 export const useApi = () => {
-  const {jwt, setJwt} = useContext(Context);
+  const {jwt} = useContext(Context);
   return {
     getUser: async () => {
-      const response = await fetch('http://localhost:8090/users/me', {
+      const response = await fetch(`${API_URL}/users/me`, {
         method: 'GET',
         headers: {
-          'Content-type': 'application/json',
           Authorization: jwt,
         },
       });

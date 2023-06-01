@@ -6,11 +6,11 @@ import Context from '../../Components/Context';
 import {useNavigate} from 'react-router-dom';
 
 //Criar estado para indicar se deu erro ou não, o tipo a ser usado nesse estado é boolean
-//Guardar
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const {jwt, setJwt} = useContext(Context);
+  const {setJwt} = useContext(Context);
   const [erro, setErro] = useState(false);
   let navigate = useNavigate();
   return (
@@ -59,10 +59,10 @@ const Login = () => {
           </Button>
         </View>
         <View style={styles.configButtonCancel}>
-          <Button style={styles.buttonCancel}>Cancel</Button>
+          <Button style={styles.buttonCancel}>Cancel</Button>{/* falta terminar */}
         </View>
       </View>
-      {erro && <Text>Algo deu errado, tente novamente</Text>}
+      {erro && <Text>Incorrect email or password</Text>}
     </View>
   );
 };
