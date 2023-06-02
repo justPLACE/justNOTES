@@ -1,9 +1,12 @@
 import {sha512} from 'js-sha512';
+
 import React, {useContext} from 'react';
 import Context from '../../Components/Context';
+const API_URL = 'http://localhost:8090';
+
 
 export const cadastro = async (nome: string, email: string, senha: string) => {
-  const response = await fetch('http://localhost:8090/users', {
+  const response = await fetch(`${API_URL}/users`, {
     method: 'POST',
     body: JSON.stringify({
       name: nome,
@@ -19,7 +22,9 @@ export const cadastro = async (nome: string, email: string, senha: string) => {
 };
 
 export const login = async (email: string, senha: string) => {
-  const response = await fetch('http://localhost:8090/users/auth', {
+
+  const response = await fetch(`${API_URL}/users/auth`, {
+
     method: 'POST',
     body: JSON.stringify({
       email: email,
@@ -43,7 +48,9 @@ export const login = async (email: string, senha: string) => {
 
   //Fazer requisição ao segundo endpoint de autenticação
 
-  const secondResponse = await fetch('http://localhost:8090/users/auth', {
+
+  const secondResponse = await fetch(`${API_URL}/users/auth`, {
+
     method: 'PUT',
     body: JSON.stringify({
       email: email,
@@ -61,6 +68,7 @@ export const login = async (email: string, senha: string) => {
   //Retornar a resposta da requisição que é o JWT
   return await secondResponse.json();
 };
+
 
 export const getUser = async () => {
   const {jwt, setJwt} = useContext(Context);
@@ -87,6 +95,7 @@ export const useApi = () => {
           Authorization: jwt,
         },
       });
+
       return await response.json();
     },
     patchNotes: async (note: Note): Promise<Note> => {
