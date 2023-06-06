@@ -9,21 +9,24 @@ import Login from './Pages/Login';
 import {BrowserRouter} from 'react-router-dom';
 import Account from './Pages/Account';
 import Notes from './Pages/Notes';
+import {NotesContext} from './Components/Context';
 
 const App = () => {
   return (
-    <NativeBaseProvider>
-      <BrowserRouter>
-        <Navbar></Navbar>
-        <Routes>
-          <Route path="/" element={<Initial />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/notes" element={<Notes />} />
-        </Routes>
-      </BrowserRouter>
-    </NativeBaseProvider>
+    <NotesContext>
+      <NativeBaseProvider>
+        <BrowserRouter>
+          <Navbar></Navbar>
+          <Routes>
+            <Route path="/" element={<Initial />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/notes" element={<Notes />} />
+          </Routes>
+        </BrowserRouter>
+      </NativeBaseProvider>
+    </NotesContext>
   );
 };
 

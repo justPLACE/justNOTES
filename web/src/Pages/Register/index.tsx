@@ -56,7 +56,7 @@ const Register = () => {
 
       {!ok && ( //se o estado for false, aparecerá a mensagem de erro
         <View>
-          <Text>E-mail ou senha incorretos</Text>
+          <Text>Error</Text>
         </View>
       )}
       <View style={styles.buttonSBS}>
@@ -78,7 +78,7 @@ const Register = () => {
           </Button>
         </View>
         <View style={styles.configButtonCancel}>
-          <Button style={styles.buttonCancel}>Cancel</Button>
+          <Button style={styles.buttonCancel}>Cancel</Button> {/*Falta terminar*/}
         </View>
       </View>
     </View>
