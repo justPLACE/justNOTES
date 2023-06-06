@@ -1,8 +1,9 @@
 import {sha512} from 'js-sha512';
-import {useContext} from 'react';
-import Context from '../../Components/Context';
 
+import React, {useContext} from 'react';
+import Context from '../../Components/Context';
 const API_URL = 'http://localhost:8090';
+
 
 export const cadastro = async (nome: string, email: string, senha: string) => {
   const response = await fetch(`${API_URL}/users`, {
@@ -21,7 +22,9 @@ export const cadastro = async (nome: string, email: string, senha: string) => {
 };
 
 export const login = async (email: string, senha: string) => {
+
   const response = await fetch(`${API_URL}/users/auth`, {
+
     method: 'POST',
     body: JSON.stringify({
       email: email,
@@ -45,7 +48,9 @@ export const login = async (email: string, senha: string) => {
 
   //Fazer requisição ao segundo endpoint de autenticação
 
+
   const secondResponse = await fetch(`${API_URL}/users/auth`, {
+
     method: 'PUT',
     body: JSON.stringify({
       email: email,
@@ -64,17 +69,73 @@ export const login = async (email: string, senha: string) => {
   return await secondResponse.json();
 };
 
+
+export const getUser = async () => {
+  const {jwt, setJwt} = useContext(Context);
+  const response = await fetch('http://localhost:8090/users/me', {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: jwt,
+    },
+  });
+
+  return await response.json();
+};
+
+export type Note = {title: string; body: string; id: string};
+
 export const useApi = () => {
-  const {jwt} = useContext(Context);
+  const {jwt, setJwt} = useContext(Context);
   return {
-    getUser: async () => {
-      const response = await fetch(`${API_URL}/users/me`, {
+    getNotes: async (): Promise<Note[]> => {
+      const response = await fetch('http://localhost:8090/notes', {
         method: 'GET',
         headers: {
           Authorization: jwt,
         },
       });
 
+      return await response.json();
+    },
+    patchNotes: async (note: Note): Promise<Note> => {
+      const response = await fetch('http://localhost:8090/notes/' + note.id, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          title: note.title,
+          body: note.body,
+        }),
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: jwt,
+        },
+      });
+      return await response.json();
+    },
+
+    postNotes: async (title: string, bodyNote: string): Promise<Note> => {
+      const response = await fetch('http://localhost:8090/notes', {
+        method: 'POST',
+        body: JSON.stringify({
+          title: title,
+          body: bodyNote,
+        }),
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: jwt,
+        },
+      });
+
+      return await response.json();
+    },
+
+    deleteNotes: async (note: Note): Promise<Note> => {
+      const response = await fetch('http://localhost:8090/notes/' + note.id, {
+        method: 'DELETE',
+        headers: {
+          Authorization: jwt,
+        },
+      });
       return await response.json();
     },
   };
